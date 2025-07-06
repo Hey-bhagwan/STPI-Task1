@@ -1,4 +1,4 @@
-// src/components/MedicineForm.tsx
+
 import React from 'react';
 import type { Medicine } from '../types/types';
 

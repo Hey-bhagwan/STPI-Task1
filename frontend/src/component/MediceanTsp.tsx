@@ -7,7 +7,7 @@ import FormActions from './FormActions';
 import RouteResults from './RouteResults';
 import { useEffect } from 'react';
 
-
+const url = import.meta.env.VITE_API_URL;
 
 const MedicineTSP: React.FC = () => {
     const [medicines, setMedicines] = useState<Medicine[]>([{ name: '', destination: 0, quantity: 1 }]);
@@ -20,7 +20,7 @@ const MedicineTSP: React.FC = () => {
     useEffect(() => {
         const checkExistingData = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/v1/tsp');
+                const res = await axios.get(`${url}/api/v1/tsp`);
                 if (res.data?.deliveryDetails?.length > 0) {
                     setResult(res.data);         // Show previous result
                     setShowResult(true);         // Expand by default (optional)
@@ -63,8 +63,8 @@ const MedicineTSP: React.FC = () => {
     const submitData = async () => {
         setLoading(true);
         try {
-            await axios.put('http://localhost:3000/api/v1/submit', medicines);
-            const res = await axios.get('http://localhost:3000/api/v1/tsp');
+            await axios.put(`${url}/api/v1/submit`, medicines);
+            const res = await axios.get(`${url}/api/v1/tsp`);
             setResult(res.data);
             setShowResult(true);
             alert('✅ Submission successful!');
@@ -77,7 +77,7 @@ const MedicineTSP: React.FC = () => {
 
     const deleteAll = async () => {
         if (!window.confirm('Are you sure?')) return;
-        await axios.delete('http://localhost:3000/api/v1/delete-all');
+        await axios.delete(`${url}/api/v1/delete-all`);
         setMedicines([{ name: '', destination: 0, quantity: 1 }]);
         setResult(null);
         setTestFilled(false);
