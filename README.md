@@ -150,8 +150,7 @@ Deletes all medicine entries.
 
 ## 🎨 UI Screenshots _(optional)_
 
-> You can upload screenshots and reference them like:
-> `![Home Page](./frontend/public/screenshot-home.png)`
+> `![Home Page](./public/screenshot-home.png)`
 
 ---
 
