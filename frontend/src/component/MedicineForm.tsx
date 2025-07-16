@@ -1,10 +1,11 @@
 
 import React from 'react';
 import type { Medicine } from '../types/types';
+import LocationInput from './LocationInput';
 
 type Props = {
     medicines: Medicine[];
-    onChange: (index: number, field: keyof Medicine, value: string | number) => void;
+    onChange: (index: number, field: keyof Medicine, value: string | number | Medicine['location']) => void;
 };
 
 const MedicineForm: React.FC<Props> = ({ medicines, onChange }) => {
@@ -23,7 +24,7 @@ const MedicineForm: React.FC<Props> = ({ medicines, onChange }) => {
                                 className="w-full border border-gray-300 rounded-lg px-3 py-2"
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <label className="block text-sm font-medium text-gray-600 mb-1">📍 Destination (1-5)</label>
                             <input
                                 type="number"
@@ -33,6 +34,18 @@ const MedicineForm: React.FC<Props> = ({ medicines, onChange }) => {
                                 onChange={(e) => onChange(index, 'destination', e.target.value)}
                                 className="w-full border border-gray-300 rounded-lg px-3 py-2"
                             />
+                        </div> */}
+                        <div className="sm:col-span-2">
+                            <label className="block text-sm font-medium text-gray-600 mb-1">📍 Destination Address</label>
+                            <LocationInput
+                                index={index}
+                                onPlaceSelect={(i, loc) => {
+                                    onChange(i, 'location', loc);
+                                }}
+                            />
+                            {med.location?.address && (
+                                <p className="text-xs text-gray-500 mt-1">Selected: {med.location.address}</p>
+                            )}
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 mb-1">🔢 Quantity</label>

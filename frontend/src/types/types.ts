@@ -1,8 +1,9 @@
 // src/types/types.ts
 export type Medicine = {
     name: string;
-    destination: number;
+    // destination: number;
     quantity: number;
+    location?: { address: string; lat: number; lng: number };
 };
 
 export type Delivery = {

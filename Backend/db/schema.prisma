@@ -14,9 +14,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model MedTrack{
-  id          Int      @id @default(autoincrement())
-  name        String
-  destination Int
-  quantity    Int
+model MedTrack {
+  id        Int     @id @default(autoincrement())
+  name      String
+  quantity  Int
+  address   String
+  lat       Float
+  lng       Float
+  createdAt DateTime @default(now())
 }
